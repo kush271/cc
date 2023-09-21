@@ -11,7 +11,7 @@ export class AppController {
     try {
       // Decrypt the response from CCAvenue
       const encryptedResponse = body.encResp;
-      const workingKey = '33540F5B53F387C90C6A1584FE1AB32E'; // Replace with your working key
+      const workingKey = '8F38D2856241173F62FB07842774F311'; // Replace with your working key
       const decryptedResponse = crypto.AES.decrypt(
         encryptedResponse,
         workingKey,
@@ -41,7 +41,7 @@ export class AppController {
   @Post('/initiate')
   async initiatePayment(@Body() body: any, @Res() res) {
     try {
-      const workingKey = '33540F5B53F387C90C6A1584FE1AB32E'; // Replace with your working key
+      const workingKey = '8F38D2856241173F62FB07842774F311'; // Replace with your working key
       const merchantId = '2872736'; // Replace with your merchant ID
       const orderId = body.orderId; // Generate a unique order ID for each transaction
       const amount = body.amount; // Amount to charge

@@ -7,6 +7,7 @@ import {
   
   import { parse } from 'querystring';
   export const encrypt = (plainText, workingKey) => {
+    console.log("HEYY")
     var m = createHash('md5');
     m.update(workingKey);
     var key = m.digest('binary');

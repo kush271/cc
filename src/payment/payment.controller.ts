@@ -10,12 +10,13 @@ export class PaymentController {
     try {
       // Decrypt the response from CCAvenue
       const encryptedResponse = body.encResp;
-      const workingKey = '33540F5B53F387C90C6A1584FE1AB32E'; // Replace with your working key
+      const workingKey = '8F38D2856241173F62FB07842774F311'; // Replace with your working key
       const decryptedResponse = crypto.AES.decrypt(
         encryptedResponse,
         workingKey,
       ).toString(crypto.enc.Utf8);
 
+      
       // Parse the response
       const responseParams = querystring.parse(decryptedResponse);
 
@@ -40,8 +41,9 @@ export class PaymentController {
   @Post()
   async initiatePayment(@Body() body: any, @Res() res) {
     try {
-      const workingKey = '33540F5B53F387C90C6A1584FE1AB32E' // Replace with your working key
+      const workingKey = '8F38D2856241173F62FB07842774F311' // Replace with your working key
       const merchantId = '2872736'; // Replace with your merchant ID
+
 
       // Create a string with the request parameters
       const paramsString = querystring.stringify(body);
@@ -57,7 +59,7 @@ export class PaymentController {
       const formHtml = `
       <html>
         <body onload="document.forms['ccavenueForm'].submit();">
-          <form method="post" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" name="ccavenueForm">
+          <form method="post" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" name="ccavenueForm">
             <input type="hidden" name="encRequest" value="${encryptedParams}" />
             <input type="hidden" name="access_code" value="AVSS14KI64BN71SSNB" /> <!-- Replace with your access code -->
           </form>
